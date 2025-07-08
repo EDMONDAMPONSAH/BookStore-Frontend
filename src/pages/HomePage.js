@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 const HomePage = () => {
   const [books, setBooks] = useState([]);
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   const fetchBooks = async () => {
     try {
@@ -35,8 +37,20 @@ const HomePage = () => {
 
       <div className="row">
         {books.map((book) => (
-          <div key={book.id} className="col-6 col-md-3 mb-4">
+          <div
+            key={book.id}
+            className="col-6 col-md-3 mb-4"
+            onClick={() => navigate(`/books/${book.id}`)}
+            style={{ cursor: "pointer" }}>
             <div className="card h-100 shadow-sm">
+              {book.firstImageUrl && (
+                <img
+                  src={book.firstImageUrl}
+                  className="card-img-top"
+                  alt={book.name}
+                  style={{ height: "180px", objectFit: "cover" }}
+                />
+              )}
               <div className="card-body d-flex flex-column justify-content-between">
                 <h5 className="card-title">{book.name}</h5>
                 <p className="card-text text-primary fw-bold">
