@@ -20,14 +20,13 @@ const LoginPage = () => {
       const res = await api.post("/auth/login", form);
       const token = res.data.token;
 
-      localStorage.setItem("token", token);
-
-      // Decode and store user info in localStorage (optional)
+      // Store token and role from decoded JWT
       const decoded = jwtDecode(token);
+      localStorage.setItem("token", token);
       localStorage.setItem("userRole", decoded.role);
       localStorage.setItem("username", decoded.name);
 
-      navigate("/"); // redirect to homepage
+      navigate("/");
     } catch (err) {
       setError("Invalid credentials");
       console.error(err);

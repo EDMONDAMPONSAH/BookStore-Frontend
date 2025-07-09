@@ -5,12 +5,24 @@ import api from "../services/api";
 const HomePage = () => {
   const [books, setBooks] = useState([]);
   const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const pageSize = 2;
+
   const navigate = useNavigate();
 
   const fetchBooks = async () => {
     try {
-      const res = await api.get(`/home?search=${search}`);
+      const res = await api.get(`/home`, {
+        params: {
+          search: search,
+          page: page,
+          pageSize: pageSize,
+        },
+      });
+
       setBooks(res.data.data);
+      setTotalPages(Math.ceil(res.data.total / pageSize));
     } catch (err) {
       console.error("Error loading books", err);
     }
@@ -18,7 +30,12 @@ const HomePage = () => {
 
   useEffect(() => {
     fetchBooks();
-  }, [search]);
+  }, [page, search]);
+
+  const handlePageChange = (newPage) => {
+    if (newPage < 1 || newPage > totalPages) return;
+    setPage(newPage);
+  };
 
   return (
     <div className="container mt-4">
@@ -30,7 +47,10 @@ const HomePage = () => {
             className="form-control"
             placeholder="Search by name or category"
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setPage(1); // reset to first page on new search
+            }}
           />
         </div>
       </div>
@@ -54,13 +74,34 @@ const HomePage = () => {
               <div className="card-body d-flex flex-column justify-content-between">
                 <h5 className="card-title">{book.name}</h5>
                 <p className="card-text text-primary fw-bold">
-                  ${book.price.toFixed(2)}
+                  GHS {book.price.toFixed(2)}
                 </p>
               </div>
             </div>
           </div>
         ))}
       </div>
+
+      {/* Pagination Controls */}
+      {totalPages > 1 && (
+        <div className="d-flex justify-content-center mt-4">
+          <button
+            className="btn btn-outline-primary me-2"
+            onClick={() => handlePageChange(page - 1)}
+            disabled={page === 1}>
+            Prev
+          </button>
+          <span className="align-self-center">
+            Page {page} of {totalPages}
+          </span>
+          <button
+            className="btn btn-outline-primary ms-2"
+            onClick={() => handlePageChange(page + 1)}
+            disabled={page === totalPages}>
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 };

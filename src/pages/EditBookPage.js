@@ -7,6 +7,7 @@ const EditBookPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [book, setBook] = useState(null);
+  const role = localStorage.getItem("userRole");
   const [form, setForm] = useState({
     name: "",
     category: "",
@@ -91,7 +92,7 @@ const EditBookPage = () => {
       });
 
       toast.success("Book updated successfully");
-      navigate("/vendor/books");
+      navigate(role === "Admin" ? "/admin" : "/vendor/books"); // Redirect based on role
     } catch (err) {
       console.error("Update failed", err);
       toast.error("Failed to update book");

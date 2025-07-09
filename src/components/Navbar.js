@@ -10,6 +10,8 @@ const Navbar = () => {
     try {
       const decoded = jwtDecode(token);
       role = decoded.role;
+      // ✅ Optional: Ensure this value is always saved for consistency
+      localStorage.setItem("userRole", role);
     } catch (err) {
       console.error("Invalid token");
     }
@@ -48,7 +50,7 @@ const Navbar = () => {
               </Link>
             </li>
 
-            {/* Conditionally show Dashboard */}
+            {/* ✅ Dashboard redirect using clean role value */}
             {token && (
               <li className="nav-item">
                 <button

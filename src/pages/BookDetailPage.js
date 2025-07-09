@@ -109,7 +109,7 @@ const BookDetailPage = () => {
               {book.description}
             </p>
 
-            <button className="btn btn-warning w-100 mt-4">Add to Cart</button>
+            <button className="btn btn-warning w-100 mt-4">Buy</button>
           </div>
         </div>
       </div>
