@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import api from "../services/api";
+import { jwtDecode } from "jwt-decode";
 
 const LoginPage = () => {
   const [form, setForm] = useState({ username: "", password: "" });
@@ -17,8 +18,16 @@ const LoginPage = () => {
 
     try {
       const res = await api.post("/auth/login", form);
-      localStorage.setItem("token", res.data.token);
-      navigate("/");
+      const token = res.data.token;
+
+      localStorage.setItem("token", token);
+
+      // Decode and store user info in localStorage (optional)
+      const decoded = jwtDecode(token);
+      localStorage.setItem("userRole", decoded.role);
+      localStorage.setItem("username", decoded.name);
+
+      navigate("/"); // redirect to homepage
     } catch (err) {
       setError("Invalid credentials");
       console.error(err);
