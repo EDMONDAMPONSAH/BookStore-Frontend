@@ -6,6 +6,7 @@ import api from "../services/api";
 const VendorDashboard = () => {
   const [username, setUsername] = useState("");
   const [stats, setStats] = useState({ totalBooks: 0, totalValue: 0 });
+  const [salesCount, setSalesCount] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,7 +18,9 @@ const VendorDashboard = () => {
           decoded.name ||
           decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
         setUsername(name);
+
         fetchStats();
+        fetchSales();
       } catch (err) {
         console.error("Failed to decode token", err);
       }
@@ -34,6 +37,19 @@ const VendorDashboard = () => {
       setStats(res.data);
     } catch (err) {
       console.error("Failed to load stats", err);
+    }
+  };
+
+  const fetchSales = async () => {
+    try {
+      const res = await api.get("/vendor/my-sales", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      setSalesCount(res.data.length); // number of successful purchases
+    } catch (err) {
+      console.error("Failed to load sales", err);
     }
   };
 
@@ -83,6 +99,19 @@ const VendorDashboard = () => {
             <div className="card-body text-success">
               <i className="fa fa-plus-circle fa-3x mb-2"></i>
               <h5>Upload Book</h5>
+            </div>
+          </div>
+        </div>
+
+        {/* Sales Card */}
+        <div className="col-md-4 mb-4">
+          <div
+            className="card shadow text-center hover-shadow"
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/vendor/sales")}>
+            <div className="card-body text-warning">
+              <i className="fa fa-credit-card fa-3x mb-2"></i>
+              <h5>My Sales ({salesCount})</h5>
             </div>
           </div>
         </div>

@@ -10,7 +10,7 @@ const Navbar = () => {
     try {
       const decoded = jwtDecode(token);
       role = decoded.role;
-      // ✅ Optional: Ensure this value is always saved for consistency
+
       localStorage.setItem("userRole", role);
     } catch (err) {
       console.error("Invalid token");

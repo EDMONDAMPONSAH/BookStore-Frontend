@@ -10,6 +10,9 @@ import Footer from "./components/Footer";
 import UploadBookPage from "./pages/UploadBookPage";
 import VendorBookListPage from "./pages/VendorBookListPage";
 import EditBookPage from "./pages/EditBookPage";
+import PaymentSuccessPage from "./pages/PaymentSuccessPage";
+import PaymentFailedPage from "./pages/PaymentFailedPage";
+import VendorSalesPage from "./pages/VendorSalesPage";
 
 function App() {
   return (
@@ -29,6 +32,9 @@ function App() {
             <Route path="/vendor/books/new" element={<UploadBookPage />} />
             <Route path="/vendor/books" element={<VendorBookListPage />} />
             <Route path="/vendor/books/:id/edit" element={<EditBookPage />} />
+            <Route path="/payment-success" element={<PaymentSuccessPage />} />
+            <Route path="/payment-failed" element={<PaymentFailedPage />} />
+            <Route path="/vendor/sales" element={<VendorSalesPage />} />
           </Routes>
         </div>
         <Footer />

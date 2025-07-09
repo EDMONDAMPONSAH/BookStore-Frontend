@@ -16,17 +16,16 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Optional: Handle unauthorized responses globally
+// Handle unauthorized responses globally
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // You can force logout or redirect here
       console.warn("Unauthorized, possibly expired token");
       localStorage.removeItem("token");
       localStorage.removeItem("userRole");
       localStorage.removeItem("username");
-      // Optionally: window.location.href = "/login";
+      // window.location.href = "/login";
     }
     return Promise.reject(error);
   }
