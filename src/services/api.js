@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://bookstore-api-40ll.onrender.com", // your backend base URL
+  baseURL: "https://bookstore-api-40ll.onrender.com", // backend base URL
 });
 
 // Attach JWT token to all requests if available
