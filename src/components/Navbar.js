@@ -50,7 +50,7 @@ const Navbar = () => {
               </Link>
             </li>
 
-            {/* ✅ Dashboard redirect using clean role value */}
+            {/* Dashboard redirect using clean role value */}
             {token && (
               <li className="nav-item">
                 <button

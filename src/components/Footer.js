@@ -5,7 +5,7 @@ const Footer = () => {
         <p className="mb-1">
           © {new Date().getFullYear()} BookStore. All rights reserved.
         </p>
-        <small>Powered by React & .NET Core</small>
+        <small>Powered by Edmond Amponsah Nyame</small>
       </div>
     </footer>
   );
