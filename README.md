@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+📚 BookStore Frontend (React)
+This is the frontend client of the BookStore platform, developed with React, styled using Bootstrap, and designed to integrate seamlessly with the BookStore API backend. Users can browse books, register or login, make purchases, and manage their vendor dashboard.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+🚀 Live URL
+📍 Deployed on Amazon S3 (Static Website Hosting)
+🔗 https://bookstore-frontend-innorik.s3-website-us-east-1.amazonaws.com
 
-## Available Scripts
+🧩 Features
+📖 Public browsing of books
 
-In the project directory, you can run:
+🛒 Vendor book management (Add/Edit/Delete)
 
-### `npm start`
+🧑‍💼 Admin dashboard (Role-based)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+🔐 JWT authentication
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+🔁 Token auto-refresh handling
 
-### `npm test`
+💳 Paystack integration (purchase flow)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+🌐 Fully responsive design
 
-### `npm run build`
+⚙️ Tech Stack
+React (SPA)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+React Router v6
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Axios (API communication)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Bootstrap (Styling)
 
-### `npm run eject`
+LocalStorage (JWT management)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Paystack JavaScript API (Client-side initialization)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Hosted on AWS S3
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+🔐 Authentication
+Users are authenticated via JWT issued by the backend.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The token is stored in localStorage and automatically attached to API requests using Axios interceptors.
 
-## Learn More
+If a token expires or the user is unauthorized, the app redirects to login.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
