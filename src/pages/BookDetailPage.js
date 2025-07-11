@@ -50,7 +50,7 @@ const BookDetailPage = () => {
       window.location.href = authorization_url;
     } catch (err) {
       console.error("Payment error:", err);
-      toast.error("Failed to start payment. Try again.");
+      toast.error("Login to start payment.");
     }
   };
 
