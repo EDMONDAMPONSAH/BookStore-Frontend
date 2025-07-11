@@ -3,7 +3,7 @@ This is the frontend client of the BookStore platform, developed with React, sty
 
 🚀 Live URL
 📍 Deployed on Amazon S3 (Static Website Hosting)
-🔗 https://bookstore-frontend-innorik.s3-website-us-east-1.amazonaws.com
+🔗 http://bookstore-frontend-innorik.s3-website-us-east-1.amazonaws.com
 
 🧩 Features
 📖 Public browsing of books
